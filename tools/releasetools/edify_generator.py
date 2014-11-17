@@ -179,31 +179,8 @@ class EdifyGenerator(object):
                         'on /system to apply patches.");') % (amount,))
 
   def Mount(self, mount_point, mount_options_by_format=""):
-    """Mount the partition with the given mount_point.
-      mount_options_by_format:
-      [fs_type=option[,option]...[|fs_type=option[,option]...]...]
-      where option is optname[=optvalue]
-      E.g. ext4=barrier=1,nodelalloc,errors=panic|f2fs=errors=recover
-    """
-    fstab = self.info.get("fstab", None)
-    if fstab:
-      p = fstab[mount_point]
-      mount_dict = {}
-      if mount_options_by_format is not None:
-        for option in mount_options_by_format.split("|"):
-          if "=" in option:
-            key, value = option.split("=", 1)
-            mount_dict[key] = value
-      self.script.append('mount("%s", "%s", "%s", "%s", "%s");' %
-                         (p.fs_type, common.PARTITION_TYPES[p.fs_type],
-                          p.device, p.mount_point, mount_dict.get(p.fs_type, "")))
-      self.mounts.add(p.mount_point)
-
-  def Unmount(self, mount_point):
-    """Unmount the partiiton with the given mount_point."""
-    if mount_point in self.mounts:
-      self.mounts.remove(mount_point)
-      self.script.append('unmount("%s");' % (mount_point,))
+    """Mount the partition with the given mount_point."""
+    self.script.append('run_program("/sbin/busybox", "mount", "/system");')
 
   def UnpackPackageDir(self, src, dst):
     """Unpack a given directory from the OTA package into the given
@@ -235,14 +212,9 @@ class EdifyGenerator(object):
   def FormatPartition(self, partition):
     """Format the given partition, specified by its mount point (eg,
     "/system")."""
-
-    reserve_size = 0
-    fstab = self.info.get("fstab", None)
-    if fstab:
-      p = fstab[partition]
-      self.script.append('format("%s", "%s", "%s", "%s", "%s");' %
-                         (p.fs_type, common.PARTITION_TYPES[p.fs_type],
-                          p.device, p.length, p.mount_point))
+    self.script.append('package_extract_file("system/bin/format-system.sh", "/tmp/format-system.sh");')
+    self.script.append('set_metadata("/tmp/format-system.sh", "uid", 0, "gid", 0, "mode", 0755);')
+    self.script.append('run_program("/tmp/format-system.sh");')
 
   def WipeBlockDevice(self, partition):
     if partition not in ("/system", "/vendor"):
@@ -355,8 +327,8 @@ class EdifyGenerator(object):
     self.script.append(extra)
 
   def Unmount(self, mount_point):
-    self.script.append('unmount("%s");' % (mount_point,))
-    self.mounts.remove(mount_point);
+    """Unmount the partiiton with the given mount_point."""
+    self.script.append('unmount("/system");')
 
   def UnmountAll(self):
     for p in sorted(self.mounts):
