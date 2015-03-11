@@ -339,7 +339,7 @@ ifneq (,$(user_variant))
     ifeq ($(DALVIK_VM_LIB),libdvm.so)
       ifeq ($(user_variant),user)
         ifeq ($(HOST_OS),linux)
-          WITH_DEXPREOPT := true
+          WITH_DEXPREOPT := false
         endif
       endif
     endif
