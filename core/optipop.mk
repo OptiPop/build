@@ -249,7 +249,6 @@ WEBCHROMIUM_STATIC_LIBRARIES := \
 
 LOCAL_DISABLE_O3 := \
     libstagefright \
-	libstagefright_m4vh263dec \
 	libstagefright_soft_aacdec \
 	$(WEBCHROMIUM_STATIC_LIBRARIES) \
 	libbluetooth_jni \
@@ -263,21 +262,29 @@ LOCAL_DISABLE_O3 := \
 	libwebviewchromium_loader \
 	libwebviewchromium_plat_support
 
+###
+# Staging flags : FastMixer from libstagefright cause error on O3 with Linaro but not with UBERTC
+# Is it worth to optimize this library?
+#   libstagefright
+#	libstagefright_m4vh263dec
+#
+
+
 ifeq ($(filter $(LOCAL_DISABLE_O3), $(LOCAL_MODULE)),)
 ifdef LOCAL_CONLYFLAGS
 LOCAL_CONLYFLAGS += \
-	-O3 -funroll-loops -fno-gcse
+	-O3 -funroll-loops -fno-unswitch-loops -fno-gcse -fno-inline-functions
 else
 LOCAL_CONLYFLAGS := \
-	-O3 -funroll-loops -fno-gcse
+	-O3 -funroll-loops -fno-unswitch-loops -fno-gcse -fno-inline-functions
 endif
 
 ifdef LOCAL_CPPFLAGS
 LOCAL_CPPFLAGS += \
-	-O3 -funroll-loops -fno-gcse
+	-O3 -funroll-loops -fno-unswitch-loops -fno-gcse -fno-inline-functions
 else
 LOCAL_CPPFLAGS := \
-	-O3 -funroll-loops -fno-gcse
+	-O3 -funroll-loops -fno-unswitch-loops -fno-gcse -fno-inline-functions
 endif
 endif
 ##################
@@ -529,3 +536,46 @@ endif
 endif
 endif
 #####
+
+####################
+# FORCE FFAST-MATH #
+####################
+ifeq ($(FFAST-MATH),true)
+LOCAL_FORCE_FFAST_MATH := \
+	libskia \
+	libGLESv2 \
+	libEGL \
+	libGLESv1_CM \
+	libGLES_android \
+
+#########
+# To Try#
+#########
+
+#        libstagefright_color_conversion \
+#        libstagefright_aacenc \
+#        libstagefright_matroska \
+#        libstagefright_webm \
+#        libstagefright_timedtext \
+#        libvpx \
+#        libwebm \
+#        libstagefright_mpeg2ts \
+#        libstagefright_id3 \
+#        libFLAC \
+#        libmedia_helper
+
+ifeq ($(filter $(LOCAL_FORCE_FFAST_MATH), $(LOCAL_MODULE)),)
+ifdef LOCAL_CONLYFLAGS
+LOCAL_CONLYFLAGS += -ffast-math
+else
+LOCAL_CONLYFLAGS := -ffast-math
+endif
+
+ifdef LOCAL_CPPFLAGS
+LOCAL_CPPFLAGS += -ffast-math
+else
+LOCAL_CPPFLAGS := -ffast-math
+endif
+endif
+endif
+###########################
