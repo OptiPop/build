@@ -248,12 +248,16 @@ WEBCHROMIUM_STATIC_LIBRARIES := \
 ####################
 
 LOCAL_DISABLE_O3 := \
+    libstagefright \
 	libstagefright_m4vh263dec \
+	libstagefright_soft_aacdec \
 	$(WEBCHROMIUM_STATIC_LIBRARIES) \
 	libbluetooth_jni \
 	libbt-brcm_bta \
 	libbt-brcm_stack \
 	libbt-hci \
+	libaudioflinger \
+	libbinder \
 	bluetooth.default \
 	libwebviewchromium \
 	libwebviewchromium_loader \
@@ -262,18 +266,18 @@ LOCAL_DISABLE_O3 := \
 ifeq ($(filter $(LOCAL_DISABLE_O3), $(LOCAL_MODULE)),)
 ifdef LOCAL_CONLYFLAGS
 LOCAL_CONLYFLAGS += \
-	-O3 -fno-gcse
+	-O3 -funroll-loops -fno-gcse
 else
 LOCAL_CONLYFLAGS := \
-	-O3 -fno-gcse
+	-O3 -funroll-loops -fno-gcse
 endif
 
 ifdef LOCAL_CPPFLAGS
 LOCAL_CPPFLAGS += \
-	-O3 -fno-gcse
+	-O3 -funroll-loops -fno-gcse
 else
 LOCAL_CPPFLAGS := \
-	-O3 -fno-gcse
+	-O3 -funroll-loops -fno-gcse
 endif
 endif
 ##################
@@ -451,18 +455,18 @@ LOCAL_DISABLE_STRICT := \
 ifeq ($(filter $(LOCAL_DISABLE_STRICT),$(LOCAL_MODULE)),)
 ifdef LOCAL_CONLYFLAGS
 LOCAL_CONLYFLAGS += \
-	-fstrict-aliasing
+	-fstrict-aliasing -Wstrict-aliasing=2
 else
 LOCAL_CONLYFLAGS := \
-	-fstrict-aliasing
+	-fstrict-aliasing -Wstrict-aliasing=2
 endif
 
 ifdef LOCAL_CPPFLAGS
 LOCAL_CPPFLAGS += \
-	-fstrict-aliasing
+	-fstrict-aliasing -Wstrict-aliasing=2
 else
 LOCAL_CPPFLAGS := \
-	-fstrict-aliasing
+	-fstrict-aliasing -Wstrict-aliasing=2
 endif
 
 else

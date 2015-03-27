@@ -49,7 +49,7 @@ $(combo_var_prefix)HAVE_STRLCPY := 0
 $(combo_var_prefix)HAVE_STRLCAT := 0
 $(combo_var_prefix)HAVE_KERNEL_MODULES := 0
 ifeq ($(USE_O3_OPTIMIZATIONS),true)
-$(combo_var_prefix)GLOBAL_CFLAGS := -fomit-frame-pointer -fno-gcse -Wno-unused-parameter -Wno-unused-but-set-variable -Wno-maybe-uninitialized -fno-exceptions -Wno-multichar -Wstrict-aliasing=2
+$(combo_var_prefix)GLOBAL_CFLAGS := -Wno-unused-parameter -Wno-unused-but-set-variable -Wno-maybe-uninitialized -fno-exceptions -Wno-multichar -Wstrict-aliasing=2
 $(combo_var_prefix)RELEASE_CFLAGS := -O2 -fomit-frame-pointer -Wno-unused-parameter -Wno-unused-but-set-variable -Wno-maybe-uninitialized
 $(combo_var_prefix)GLOBAL_CPPFLAGS := -fomit-frame-pointer -Wno-unused-parameter -Wno-unused-but-set-variable -Wno-maybe-uninitialized -Wstrict-aliasing=2
 $(combo_var_prefix)GLOBAL_LDFLAGS := -Wl,-O1 -Wl,--as-needed -Wl,--relax -Wl,--sort-common -Wl,--gc-sections
