@@ -246,10 +246,11 @@ WEBCHROMIUM_STATIC_LIBRARIES := \
 ####################
 # FORCE SAFE FLAGS #
 ####################
-
+ifeq ($(USE_O3_OPTIMIZATIONS),true)
 LOCAL_DISABLE_O3 := \
     libstagefright \
 	libstagefright_soft_aacdec \
+	libstagefright_m4vh263dec \
 	$(WEBCHROMIUM_STATIC_LIBRARIES) \
 	libbluetooth_jni \
 	libbt-brcm_bta \
@@ -266,8 +267,8 @@ LOCAL_DISABLE_O3 := \
 # Staging flags : FastMixer from libstagefright cause error on O3 with Linaro but not with UBERTC
 # Is it worth to optimize this library?
 #   libstagefright
-#	libstagefright_m4vh263dec
-#
+#	
+# libstagefright_m4vh263dec :  wstrict-overflow occurs
 
 
 ifeq ($(filter $(LOCAL_DISABLE_O3), $(LOCAL_MODULE)),)
@@ -285,6 +286,7 @@ LOCAL_CPPFLAGS += \
 else
 LOCAL_CPPFLAGS := \
 	-O3 -funroll-loops -fno-unswitch-loops -fno-gcse -fno-inline-functions
+endif
 endif
 endif
 ##################
