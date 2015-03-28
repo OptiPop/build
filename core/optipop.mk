@@ -241,6 +241,11 @@ WEBCHROMIUM_STATIC_LIBRARIES := \
 	components_visitedlink_renderer_gyp \
 	content_content_app_both_gyp \
 	v8_tools_gyp_v8_gyp \
+	third_party_icu_icui18n_gyp \
+	third_party_icu_system_icu_gyp \
+	third_party_icu_icuuc_gyp  \
+	third_party_WebKit_public_blink_gyp \
+	third_party_WebKit_public_blink_resources_gyp \
 
 
 ####################
@@ -565,6 +570,7 @@ LOCAL_FORCE_FFAST_MATH := \
 #        libstagefright_id3 \
 #        libFLAC \
 #        libmedia_helper
+#        skia_skia_gyp
 
 ifeq ($(filter $(LOCAL_FORCE_FFAST_MATH), $(LOCAL_MODULE)),)
 ifdef LOCAL_CONLYFLAGS
