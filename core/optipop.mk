@@ -464,7 +464,8 @@ LOCAL_DISABLE_STRICT := \
 	libdiskconfig \
 	logd \
 	linker \
-	libjavacore
+	libjavacore \
+	camera.msm8084
 
 ifeq ($(filter $(LOCAL_DISABLE_STRICT),$(LOCAL_MODULE)),)
 ifdef LOCAL_CONLYFLAGS
@@ -586,4 +587,218 @@ LOCAL_CPPFLAGS := -ffast-math
 endif
 endif
 endif
-###########################
+#####
+# ENABLE_GCCONLY
+ifeq ($(ENABLE_GCCONLY),true)
+ifndef LOCAL_IS_HOST_MODULE
+ifeq ($(LOCAL_CLANG),)
+LOCAL_DISABLE_GCCONLY := \
+	bluetooth.default \
+	libwebviewchromium \
+	libwebviewchromium_loader \
+	libwebviewchromium_plat_support
+
+ifeq ($(filter $(LOCAL_DISABLE_GCCONLY), $(LOCAL_MODULE)),)
+ifdef LOCAL_CONLYFLAGS
+LOCAL_CONLYFLAGS += -fira-loop-pressure \
+	-fforce-addr \
+	-funsafe-loop-optimizations \
+	-funroll-loops \
+	-ftree-loop-distribution \
+	-fsection-anchors \
+	-ftree-loop-im \
+	-ftree-loop-ivcanon \
+	-ffunction-sections \
+	-fgcse-las \
+	-fgcse-sm \
+	-fweb \
+	-ffp-contract=fast \
+	-mvectorize-with-neon-quad
+else
+LOCAL_CONLYFLAGS := -fira-loop-pressure \
+	-fforce-addr \
+	-funsafe-loop-optimizations \
+	-funroll-loops \
+	-ftree-loop-distribution \
+	-fsection-anchors \
+	-ftree-loop-im \
+	-ftree-loop-ivcanon \
+	-ffunction-sections \
+	-fgcse-las \
+	-fgcse-sm \
+	-fweb \
+	-ffp-contract=fast \
+	-mvectorize-with-neon-quad
+endif
+
+ifdef LOCAL_CPPFLAGS
+LOCAL_CPPFLAGS += -fira-loop-pressure \
+	-fforce-addr \
+	-funsafe-loop-optimizations \
+	-funroll-loops \
+	-ftree-loop-distribution \
+	-fsection-anchors \
+	-ftree-loop-im \
+	-ftree-loop-ivcanon \
+	-ffunction-sections \
+	-fgcse-las \
+	-fgcse-sm \
+	-fweb \
+	-ffp-contract=fast \
+	-mvectorize-with-neon-quad
+else
+LOCAL_CPPFLAGS := -fira-loop-pressure \
+	-fforce-addr \
+	-funsafe-loop-optimizations \
+	-funroll-loops \
+	-ftree-loop-distribution \
+	-fsection-anchors \
+	-ftree-loop-im \
+	-ftree-loop-ivcanon \
+	-ffunction-sections \
+	-fgcse-las \
+	-fgcse-sm \
+	-fweb \
+	-ffp-contract=fast \
+	-mvectorize-with-neon-quad
+endif
+endif
+#####
+
+# FLOOP_NEST_OPTIMIZE
+ifeq ($(FLOOP_NEST_OPTIMIZE),true)
+LOCAL_ENABLE_NEST := \
+	art \
+	libsigchain \
+	libart \
+	libart-compiler \
+	libartd \
+	libartd-compiler \
+	libart-disassembler \
+	libartd-disassembler \
+	core.art-host \
+	core.art \
+	cpplint-art-phony \
+	libnativebridgetest \
+	libarttest \
+	art-run-tests \
+	libart-gtest \
+	libc \
+	libc_bionic \
+	libc_gdtoa \
+	libc_netbsd \
+	libc_freebsd \
+	libc_dns \
+	libc_openbsd \
+	libc_cxa \
+	libc_syscalls \
+	libc_aeabi \
+	libc_common \
+	libc_nomalloc \
+	libc_malloc \
+	libc_stack_protector \
+	libc_tzcode \
+	libstdc++ \
+	linker \
+	libdl \
+	libm \
+	tzdata \
+	bionic-benchmarks
+
+ifeq (1,$(words $(filter $(LOCAL_ENABLE_NEST), $(LOCAL_MODULE))))
+ifdef LOCAL_CONLYFLAGS
+LOCAL_CONLYFLAGS += \
+	-floop-nest-optimize
+else
+LOCAL_CONLYFLAGS := \
+	-floop-nest-optimize
+endif
+
+ifdef LOCAL_CPPFLAGS
+LOCAL_CPPFLAGS += \
+	-floop-nest-optimize
+else
+LOCAL_CPPFLAGS := \
+	-floop-nest-optimize
+endif
+endif
+endif
+endif
+endif
+endif
+#####
+
+# GRAPHITE_OPTS
+ifeq ($(GRAPHITE_OPTS),true)
+ifndef LOCAL_IS_HOST_MODULE
+ifeq ($(LOCAL_CLANG),)
+LOCAL_DISABLE_GRAPHITE := \
+	libunwind \
+	libFFTEm \
+	libicui18n \
+	libskia \
+	libvpx \
+	libmedia_jni \
+	libstagefright_mp3dec \
+	libart \
+	libstagefright_amrwbenc \
+	libpdfium \
+	libpdfiumcore \
+	libwebviewchromium \
+	libwebviewchromium_loader \
+	libwebviewchromium_plat_support \
+	libjni_filtershow_filters \
+	fio \
+	libwebrtc_spl \
+	libpcap \
+	libFraunhoferAAC
+
+ifeq ($(filter $(LOCAL_DISABLE_GRAPHITE), $(LOCAL_MODULE)),)
+ifdef LOCAL_CONLYFLAGS
+LOCAL_CONLYFLAGS += \
+	-fgraphite \
+	-fgraphite-identity \
+	-floop-flatten \
+	-floop-parallelize-all \
+	-ftree-loop-linear \
+	-floop-interchange \
+	-floop-strip-mine \
+	-floop-block
+else
+LOCAL_CONLYFLAGS := \
+	-fgraphite \
+	-fgraphite-identity \
+	-floop-flatten \
+	-floop-parallelize-all \
+	-ftree-loop-linear \
+	-floop-interchange \
+	-floop-strip-mine \
+	-floop-block
+endif
+
+ifdef LOCAL_CPPFLAGS
+LOCAL_CPPFLAGS += \
+	-fgraphite \
+	-fgraphite-identity \
+	-floop-flatten \
+	-floop-parallelize-all \
+	-ftree-loop-linear \
+	-floop-interchange \
+	-floop-strip-mine \
+	-floop-block
+else
+LOCAL_CPPFLAGS := \
+	-fgraphite \
+	-fgraphite-identity \
+	-floop-flatten \
+	-floop-parallelize-all \
+	-ftree-loop-linear \
+	-floop-interchange \
+	-floop-strip-mine \
+	-floop-block
+endif
+endif
+endif
+endif
+endif
+#####
