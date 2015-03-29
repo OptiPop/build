@@ -465,7 +465,8 @@ LOCAL_DISABLE_STRICT := \
 	logd \
 	linker \
 	libjavacore \
-	camera.msm8084
+	camera.msm8084 \
+	libmmcamera_interface
 
 ifeq ($(filter $(LOCAL_DISABLE_STRICT),$(LOCAL_MODULE)),)
 ifdef LOCAL_CONLYFLAGS
