@@ -575,6 +575,10 @@ LOCAL_FORCE_FFAST_MATH := \
 #        libFLAC \
 #        libmedia_helper
 #        skia_skia_gyp
+#    	ui_gfx_gfx_gyp \
+#		ui_gfx_gfx_geometry_gyp \
+#       ui_gfx_ipc_gfx_ipc_gyp
+#
 
 ifneq ($(filter $(LOCAL_FORCE_FFAST_MATH), $(LOCAL_MODULE)),)
 ifdef LOCAL_CONLYFLAGS
