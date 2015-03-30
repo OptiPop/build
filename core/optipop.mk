@@ -557,7 +557,10 @@ LOCAL_FORCE_FFAST_MATH := \
 	libEGL \
 	libGLESv1_CM \
 	libGLES_android \
-	skia_skia_gyp
+	skia_skia_gyp \
+	ui_gfx_gfx_gyp \
+	ui_gfx_gfx_geometry_gyp \
+	ui_gfx_ipc_gfx_ipc_gyp
 
 #########
 # To Try#
