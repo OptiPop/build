@@ -576,7 +576,7 @@ LOCAL_FORCE_FFAST_MATH := \
 #        libmedia_helper
 #        skia_skia_gyp
 
-ifeq ($(filter $(LOCAL_FORCE_FFAST_MATH), $(LOCAL_MODULE)),)
+ifneq ($(filter $(LOCAL_FORCE_FFAST_MATH), $(LOCAL_MODULE)),)
 ifdef LOCAL_CONLYFLAGS
 LOCAL_CONLYFLAGS += -ffast-math
 else
