@@ -550,13 +550,14 @@ endif
 ####################
 # FORCE FFAST-MATH #
 ####################
-ifeq ($(FFAST-MATH),true)
+ifeq ($(FFAST_MATH),true)
 LOCAL_FORCE_FFAST_MATH := \
 	libskia \
 	libGLESv2 \
 	libEGL \
 	libGLESv1_CM \
 	libGLES_android \
+	skia_skia_gyp
 
 #########
 # To Try#
