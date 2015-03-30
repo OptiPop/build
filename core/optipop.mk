@@ -585,15 +585,15 @@ LOCAL_FORCE_FFAST_MATH := \
 
 ifneq ($(filter $(LOCAL_FORCE_FFAST_MATH), $(LOCAL_MODULE)),)
 ifdef LOCAL_CONLYFLAGS
-LOCAL_CONLYFLAGS += -ffast-math
+LOCAL_CONLYFLAGS += -ffast-math -ftree-vectorize -fsingle-precision-constant
 else
-LOCAL_CONLYFLAGS := -ffast-math
+LOCAL_CONLYFLAGS := -ffast-math -ftree-vectorize -fsingle-precision-constant
 endif
 
 ifdef LOCAL_CPPFLAGS
-LOCAL_CPPFLAGS += -ffast-math
+LOCAL_CPPFLAGS += -ffast-math -ftree-vectorize -fsingle-precision-constant
 else
-LOCAL_CPPFLAGS := -ffast-math
+LOCAL_CPPFLAGS := -ffast-math -ftree-vectorize -fsingle-precision-constant
 endif
 endif
 endif
