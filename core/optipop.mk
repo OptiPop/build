@@ -103,7 +103,8 @@ LOCAL_DISABLE_STRICT := \
 	oatdump \
 	libart-disassembler \
 	linker \
-	camera.msm8084
+	camera.msm8084 \
+	mm-vdec-omx-test 
 
 LOCAL_FORCE_DISABLE_STRICT := \
 	libziparchive-host \
