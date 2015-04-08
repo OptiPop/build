@@ -55,7 +55,7 @@ $(combo_var_prefix)GLOBAL_CPPFLAGS := -fomit-frame-pointer -Wno-unused-parameter
 $(combo_var_prefix)GLOBAL_LDFLAGS := -Wl,-O1 -Wl,--as-needed -Wl,--relax -Wl,--sort-common -Wl,--gc-sections
 else
 $(combo_var_prefix)GLOBAL_CFLAGS := -fno-exceptions -Wno-multichar -Wno-maybe-uninitialized
-$(combo_var_prefix)RELEASE_CFLAGS := -O2 -g -fno-strict-aliasing
+$(combo_var_prefix)RELEASE_CFLAGS := -O2 -fno-strict-aliasing
 $(combo_var_prefix)GLOBAL_CPPFLAGS :=
 $(combo_var_prefix)GLOBAL_LDFLAGS :=
 endif
