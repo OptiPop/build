@@ -263,6 +263,8 @@ LOCAL_DISABLE_O3 := \
 	libbt-hci \
 	libaudioflinger \
 	libbinder \
+	libunwind \
+	libunwind_32 \
 	bluetooth.default \
 	libwebviewchromium \
 	libwebviewchromium_loader \
@@ -360,7 +362,7 @@ LOCAL_DISABLE_STRICT := \
 	third_party_webrtc_modules_audio_device_gyp\
 	third_party_webrtc_modules_rtp_rtcp_gyp \
 	components_data_reduction_proxy_browser_gyp \
-	\
+	libunwind_32 \
 	\
 	\
 	\
@@ -563,8 +565,6 @@ LOCAL_FORCE_FFAST_MATH := \
 	ui_gl_gl_gyp \
 	libui \
 	libgui \
-	ui_base_ui_base_gyp \
-	ui_gfx_gfx_geometry_gyp \
 	third_party_WebKit_Source_core_webcore_rendering_gyp \
 	third_party_WebKit_Source_core_webcore_svg_gyp \
 	third_party_WebKit_Source_core_webcore_generated_gyp \
@@ -572,6 +572,19 @@ LOCAL_FORCE_FFAST_MATH := \
 	third_party_WebKit_Source_core_webcore_remaining_gy \
 	third_party_WebKit_Source_web_blink_web_gyp \
 	gpu_gl_in_process_context \
+	ui_base_ui_base_gyp \
+	ui_events_events_gyp \
+	ui_events_gesture_detection_gyp \
+	ui_events_platform_events_platform_gyp \
+	ui_events_ipc_events_ipc_gyp \
+	ui_gfx_ipc_gfx_ipc_gyp \
+	ui_gfx_gfx_geometry_gyp \
+	ui_shell_dialogs_shell_dialogs_gyp \
+	gpu_gpu_ipc_gyp \
+	gpu_gles2_c_lib_gyp \
+	gpu_gles2_implementation_gyp \
+	gpu_gl_in_process_context_gyp \
+	gpu_skia_bindings_gpu_skia_bindings_gyp \
 	cc_cc_gyp
 
 LOCAL_DISABLE_SINGLE_PRECISION :=
