@@ -573,11 +573,6 @@ LOCAL_FORCE_FFAST_MATH := \
 	third_party_WebKit_Source_web_blink_web_gyp \
 	gpu_gl_in_process_context \
 	ui_base_ui_base_gyp \
-	ui_events_events_gyp \
-	ui_events_gesture_detection_gyp \
-	ui_events_platform_events_platform_gyp \
-	ui_events_ipc_events_ipc_gyp \
-	ui_gfx_ipc_gfx_ipc_gyp \
 	ui_gfx_gfx_geometry_gyp \
 	ui_shell_dialogs_shell_dialogs_gyp \
 	gpu_gpu_ipc_gyp \
@@ -585,6 +580,9 @@ LOCAL_FORCE_FFAST_MATH := \
 	gpu_gles2_implementation_gyp \
 	gpu_gl_in_process_context_gyp \
 	gpu_skia_bindings_gpu_skia_bindings_gyp \
+	libfilterfw_jni \
+	libfilterfw_native \
+	libandroid_runtime \
 	cc_cc_gyp
 
 LOCAL_DISABLE_SINGLE_PRECISION :=
