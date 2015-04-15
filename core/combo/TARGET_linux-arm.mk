@@ -68,8 +68,8 @@ $(combo_2nd_arch_prefix)TARGET_STRIP := $($(combo_2nd_arch_prefix)TARGET_TOOLS_P
 $(combo_2nd_arch_prefix)TARGET_NO_UNDEFINED_LDFLAGS := -Wl,--no-undefined
 
 ifeq ($(USE_O3_OPTIMIZATIONS),true)
-$(combo_2nd_arch_prefix)TARGET_arm_CFLAGS := -O2 -fstrict-aliasing -fomit-frame-pointer -funswitch-loops -ftree-vectorize
-$(combo_2nd_arch_prefix)TARGET_thumb_CFLAGS := -mthumb -Os -fomit-frame-pointer -ftree-vectorize
+$(combo_2nd_arch_prefix)TARGET_arm_CFLAGS := -O2 -fstrict-aliasing -fomit-frame-pointer -funswitch-loops
+$(combo_2nd_arch_prefix)TARGET_thumb_CFLAGS := -mthumb -Os -fomit-frame-pointer
 else
 $(combo_2nd_arch_prefix)TARGET_arm_CFLAGS := -O2 -fomit-frame-pointer -fstrict-aliasing -funswitch-loops
 $(combo_2nd_arch_prefix)TARGET_thumb_CFLAGS := -mthumb -Os -fomit-frame-pointer
