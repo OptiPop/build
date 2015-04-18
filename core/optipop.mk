@@ -565,6 +565,7 @@ LOCAL_FORCE_FFAST_MATH := \
 	ui_gl_gl_gyp \
 	libui \
 	libgui \
+	libhwui \
 	third_party_WebKit_Source_core_webcore_rendering_gyp \
 	third_party_WebKit_Source_core_webcore_svg_gyp \
 	third_party_WebKit_Source_core_webcore_generated_gyp \
