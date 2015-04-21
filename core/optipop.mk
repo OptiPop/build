@@ -256,7 +256,6 @@ LOCAL_DISABLE_O3 := \
     libstagefright \
 	libstagefright_soft_aacdec \
 	libstagefright_m4vh263dec \
-	$(WEBCHROMIUM_STATIC_LIBRARIES) \
 	libbluetooth_jni \
 	libbt-brcm_bta \
 	libbt-brcm_stack \
@@ -265,16 +264,15 @@ LOCAL_DISABLE_O3 := \
 	libbinder \
 	libunwind \
 	libunwind_32 \
-	bluetooth.default \
-	libwebviewchromium \
-	libwebviewchromium_loader \
-	libwebviewchromium_plat_support
+	content_content_browser_gyp \
+	bluetooth.default 
 
 ###
 # Staging flags : FastMixer from libstagefright cause error on O3 with Linaro but not with UBERTC
 # Is it worth to optimize this library?
 #   libstagefright
 #	
+#	$(WEBCHROMIUM_STATIC_LIBRARIES) #\
 # libstagefright_m4vh263dec :  wstrict-overflow occurs
 
 
@@ -560,6 +558,7 @@ LOCAL_FORCE_FFAST_MATH := \
 	libGLESv1_CM \
 	libGLES_android \
 	skia_skia_gyp \
+	skia_skia_library_gyp \
 	ui_gfx_gfx_gyp \
 	ui_gfx_ipc_gfx_ipc_gyp \
 	ui_gl_gl_gyp \
@@ -610,6 +609,7 @@ LOCAL_DISABLE_SINGLE_PRECISION :=
 #
 
 ifneq ($(filter $(LOCAL_FORCE_FFAST_MATH), $(LOCAL_MODULE)),)
+
 ifdef LOCAL_CONLYFLAGS
 LOCAL_CONLYFLAGS += -ffast-math -ftree-vectorize
 else

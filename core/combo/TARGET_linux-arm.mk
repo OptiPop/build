@@ -68,9 +68,9 @@ $(combo_2nd_arch_prefix)TARGET_STRIP := $($(combo_2nd_arch_prefix)TARGET_TOOLS_P
 $(combo_2nd_arch_prefix)TARGET_NO_UNDEFINED_LDFLAGS := -Wl,--no-undefined
 
 ifeq ($(USE_O3_OPTIMIZATIONS),true)
-$(combo_2nd_arch_prefix)TARGET_arm_CFLAGS := -O2 -fstrict-aliasing -fomit-frame-pointer -funswitch-loops
-$(combo_2nd_arch_prefix)TARGET_thumb_CFLAGS := -mthumb -Os -fomit-frame-pointer
-else
+$(combo_2nd_arch_prefix)TARGET_arm_CFLAGS := -O2 -fstrict-aliasing -fomit-frame-pointer -funswitch-loops -l1-cache-line-size=64 -l1-cache-size=32 -l2-cache-size=1024
+$(combo_2nd_arch_prefix)TARGET_thumb_CFLAGS := -mthumb -Os -fomit-frame-pointer -l1-cache-line-size=64 -l1-cache-size=32 -l2-cache-size=1024
+else 
 $(combo_2nd_arch_prefix)TARGET_arm_CFLAGS := -O2 -fomit-frame-pointer -fstrict-aliasing -funswitch-loops
 $(combo_2nd_arch_prefix)TARGET_thumb_CFLAGS := -mthumb -Os -fomit-frame-pointer
 endif
@@ -138,8 +138,8 @@ $(combo_2nd_arch_prefix)TARGET_GLOBAL_LDFLAGS += \
 $(combo_2nd_arch_prefix)TARGET_GLOBAL_CFLAGS += -mthumb-interwork
 
 ifeq ($(USE_O3_OPTIMIZATIONS),true)
-$(combo_2nd_arch_prefix)TARGET_GLOBAL_CPPFLAGS += -fvisibility-inlines-hidden -Wstrict-aliasing=2
-$(combo_2nd_arch_prefix)TARGET_RELEASE_CFLAGS := -DNDEBUG -fgcse-after-reload -frerun-cse-after-loop -frename-registers -fstrict-aliasing  -frename-registers -fomit-frame-pointer -Wstrict-aliasing=2
+$(combo_2nd_arch_prefix)TARGET_GLOBAL_CPPFLAGS += -l1-cache-line-size=64 -l1-cache-size=32 -l2-cache-size=1024  -fvisibility-inlines-hidden -Wstrict-aliasing=2
+$(combo_2nd_arch_prefix)TARGET_RELEASE_CFLAGS := -l1-cache-line-size=64 -l1-cache-size=32 -l2-cache-size=1024 -DNDEBUG -fgcse-after-reload -frerun-cse-after-loop -frename-registers -fstrict-aliasing  -frename-registers -fomit-frame-pointer -Wstrict-aliasing=2
 else
 $(combo_2nd_arch_prefix)TARGET_GLOBAL_CPPFLAGS += -fvisibility-inlines-hidden
 $(combo_2nd_arch_prefix)TARGET_RELEASE_CFLAGS := -DNDEBUG -Wstrict-aliasing=2 -fgcse-after-reload -frerun-cse-after-loop -frename-registers
