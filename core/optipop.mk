@@ -278,6 +278,8 @@ ifeq ($(DISABLE_OPTIMIZATIONS_ON_CHROMIUM),true)
     LOCAL_DISABLE_O3 += $(WEBCHROMIUM_STATIC_LIBRARIES)
 endif
 
+O3_FLAGS :=  -O3 -fno-inline-functions
+
 ####################
 #  END  03  FLAGS  #
 ####################
