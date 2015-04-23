@@ -263,7 +263,10 @@ LOCAL_DISABLE_O3 := \
     libaudioflinger \
     libbinder \
     libexynosv4l2 \
-    bluetooth.default
+    bluetooth.default \
+    updater \
+    libext2_blkid \
+    libext2_uuid_static
 
 ifeq ($(TARGET_DEVICE),manta)
 LOCAL_DISABLE_O3 += \
