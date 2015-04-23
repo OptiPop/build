@@ -266,6 +266,13 @@ LOCAL_DISABLE_O3 := \
 	libexynosv4l2 \
 	bluetooth.default
 
+ifeq ($(TARGET_DEVICE),manta)
+LOCAL_DISABLE_O3 += \
+    content_content_browser_gyp \
+    content_content_common_gyp \
+    content_content_renderer_gyp
+endif
+
 ifeq ($(DISABLE_OPTIMIZATIONS_ON_CHROMIUM),true)
     LOCAL_DISABLE_O3 += $(WEBCHROMIUM_STATIC_LIBRARIES)
 endif
@@ -727,7 +734,7 @@ endif
 # FORCE FFAST-MATH #
 ####################
 ifeq ($(FFAST_MATH),true)
-LOCAL_FORCE_FFAST_MATH :=  \
+LOCAL_FORCE_FFAST_MATH := \
 	libskia \
 	libGLESv2 \
 	libEGL \
@@ -740,21 +747,19 @@ LOCAL_FORCE_FFAST_MATH :=  \
 	ui_gl_gl_gyp \
 	libui \
 	libgui \
+	libhwui \
+	content_content_browser_gyp \
+	content_content_common_gyp \
+	content_content_renderer_gyp \
 	third_party_WebKit_Source_core_webcore_rendering_gyp \
 	third_party_WebKit_Source_core_webcore_svg_gyp \
 	third_party_WebKit_Source_core_webcore_generated_gyp \
 	third_party_WebKit_Source_core_webcore_html_gyp \
 	third_party_WebKit_Source_core_webcore_remaining_gy \
 	third_party_WebKit_Source_web_blink_web_gyp \
-	gpu_gl_in_process_context \
 	ui_base_ui_base_gyp \
-	ui_gfx_gfx_geometry_gyp \
-	ui_shell_dialogs_shell_dialogs_gyp \
-	gpu_gpu_ipc_gyp \
 	gpu_gles2_c_lib_gyp \
-	gpu_gles2_implementation_gyp \
-	gpu_gl_in_process_context_gyp \
-	gpu_skia_bindings_gpu_skia_bindings_gyp \
+	gpu_gpu_config_gyp \
 	libfilterfw_jni \
 	libfilterfw_native \
 	libandroid_runtime \
