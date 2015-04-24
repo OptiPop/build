@@ -230,6 +230,8 @@ endif
 #  FLOOP_NEST_OPTIMIZE   #
 ########################## 
 ifeq ($(FLOOP_NEST_OPTIMIZE),true)
+ifndef LOCAL_IS_HOST_MODULE
+ifeq ($(LOCAL_CLANG),)
 ifneq ($(filter $(LOCAL_ENABLE_NEST), $(LOCAL_MODULE)),)
 
 ifdef LOCAL_CONLYFLAGS
@@ -248,6 +250,8 @@ LOCAL_CPPFLAGS := \
 	-floop-nest-optimize
 endif
 
+endif
+endif
 endif
 endif
 #############################
