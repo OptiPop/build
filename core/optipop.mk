@@ -265,12 +265,16 @@ LOCAL_DISABLE_O3 := \
 	libbinder \
 	libexynosv4l2 \
 	bluetooth.default \
-        $(WEBCHROMIUM_STATIC_LIBRARIES) \
+	$(WEBCHROMIUM_STATIC_LIBRARIES) \
 	libwebviewchromium \
 	libwebviewchromium_loader \
 	libwebviewchromium_plat_support
 
 LOCAL_O3_EXTRAS_FLAGS := -fno-inline-functions
+
+ifneq ($(filter $(TARGET_GCC_VERSION), 5.1 5.1.%),)
+	LOCAL_O3_EXTRAS_FLAGS += -Wno-array-bounds
+endif
 
 ifeq ($(DISABLE_OPTIMIZATIONS_ON_CHROMIUM),true)
     LOCAL_DISABLE_O3 += $(WEBCHROMIUM_STATIC_LIBRARIES)
