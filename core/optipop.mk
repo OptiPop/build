@@ -606,6 +606,14 @@ LOCAL_FORCE_FFAST_MATH := \
     third_party_WebKit_Source_web_blink_web_gyp \
     libfilterfw_jni \
     libfilterfw_native \
+    libandroid_runtime \
+    cc_cc_gyp \
+    libstagefright \
+    libstagefright_soft_mpeg2dec \
+    libstagefright_soft_avcdec \
+    libstagefright_soft_mp3dec \
+    libETC1 \
+    egl.cfg \
 
 LOCAL_DISABLE_SINGLE_PRECISION := \
 FFAST_MATH_FLAGS := -ffast-math -ftree-vectorize
