@@ -145,6 +145,9 @@ $(combo_2nd_arch_prefix)TARGET_GLOBAL_CPPFLAGS += -fvisibility-inlines-hidden
 $(combo_2nd_arch_prefix)TARGET_RELEASE_CFLAGS := -DNDEBUG -Wstrict-aliasing=2 -fgcse-after-reload -frerun-cse-after-loop -frename-registers
 endif
 
+$(combo_2nd_arch_prefix)TARGET_GLOBAL_CFLAGS += --param l1-cache-size=32 --param l1-cache-line-size=64 --param l2-cache-size=1024
+$(combo_2nd_arch_prefix)TARGET_GLOBAL_CPPFLAGS += --param l1-cache-size=32 --param l1-cache-line-size=64 --param l2-cache-size=1024
+
 libc_root := bionic/libc
 libm_root := bionic/libm
 libstdc++_root := bionic/libstdc++

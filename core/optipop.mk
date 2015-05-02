@@ -271,7 +271,7 @@ LOCAL_DISABLE_O3 := \
 
 LOCAL_O3_EXTRAS_FLAGS := -fno-inline-functions
 
-ifneq ($(filter $(TARGET_GCC_VERSION), 5.1 5.1.%),)
+ifneq ($(filter $($(combo_2nd_arch_prefix)TARGET_GCC_VERSION), 5.1 5.1.%),)
 	LOCAL_O3_EXTRAS_FLAGS += -Wno-array-bounds
 endif
 
@@ -593,27 +593,16 @@ LOCAL_FORCE_FFAST_MATH := \
     libEGL \
     libGLESv1_CM \
     libGLES_android \
-    skia_skia_gyp \
-    skia_skia_library_gyp \
     libui \
     libgui \
     libhwui \
-    third_party_WebKit_Source_core_webcore_rendering_gyp \
-    third_party_WebKit_Source_core_webcore_svg_gyp \
-    third_party_WebKit_Source_core_webcore_generated_gyp \
-    third_party_WebKit_Source_core_webcore_html_gyp \
-    third_party_WebKit_Source_core_webcore_remaining_gy \
-    third_party_WebKit_Source_web_blink_web_gyp \
     libfilterfw_jni \
     libfilterfw_native \
-    libandroid_runtime \
-    cc_cc_gyp \
     libstagefright \
     libstagefright_soft_mpeg2dec \
     libstagefright_soft_avcdec \
     libstagefright_soft_mp3dec \
     libETC1 \
-    egl.cfg \
 
 LOCAL_DISABLE_SINGLE_PRECISION := \
 FFAST_MATH_FLAGS := -ffast-math -ftree-vectorize
