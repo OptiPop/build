@@ -271,10 +271,6 @@ LOCAL_DISABLE_O3 := \
 
 LOCAL_O3_EXTRAS_FLAGS := -fno-inline-functions
 
-ifneq ($(filter $($(combo_2nd_arch_prefix)TARGET_GCC_VERSION), 5.1 5.1.%),)
-    LOCAL_O3_EXTRAS_FLAGS += -Wno-array-bounds -Wno-strict-overflow
-endif
-
 ifeq ($(DISABLE_OPTIMIZATIONS_ON_CHROMIUM),true)
     LOCAL_DISABLE_O3 += $(WEBCHROMIUM_STATIC_LIBRARIES)
 endif
