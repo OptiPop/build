@@ -450,7 +450,6 @@ STRICT_GCC_LEVEL := \
 
 STRICT_CLANG_LEVEL := \
     -Wstrict-aliasing=2
->>>>>>> origin/opti-5.1
 #########################
 #  END STRICT_ALIASING  #
 #########################
