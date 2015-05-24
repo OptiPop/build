@@ -84,5 +84,9 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     system/core/rootdir/init.usb.rc:root/init.usb.rc \
     system/core/rootdir/init.trace.rc:root/init.trace.rc \
-    system/core/rootdir/ueventd.rc:root/ueventd.rc \
+    system/core/rootdir/ueventd.rc:root/ueventd.rc
+
+ifndef BOARD_USE_CUSTOM_HOSTS_FILE
+PRODUCT_COPY_FILES += \
     system/core/rootdir/etc/hosts:system/etc/hosts
+endif
